@@ -1,0 +1,96 @@
+.handIcon {
+  width: 70px;
+  display: block;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+.txt {
+  text-align: center;
+  line-height: 5px;
+}
+.greetTxt {
+  font-weight: 700;
+  font-size: 48px;
+
+  color: var(--nero-color);
+}
+.loginTxt {
+  font-weight: 500;
+  font-size: 28px;
+  color: var(--nero-color);
+  opacity: 0.5;
+}
+.form form {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+}
+.form-box {
+  margin: 10px 0;
+  border-radius: 10px;
+  padding-left: 20px;
+  width: 518px;
+  height: 75px;
+  font-size: 20px;
+  font-weight: 500;
+  font-family: DM Sans;
+  color: var(--nero-color);
+  background-color: var(--lightGrey-color);
+  border: 0;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box; /* Firefox, other Gecko */
+  box-sizing: border-box; /* Opera/IE 8+ */
+}
+.form-box:focus {
+  outline: none;
+}
+.form-box::placeholder {
+  color: #aca9a9;
+  /* padding-left: 20px; */
+}
+.formBtn {
+  width: 518px;
+  height: 75px;
+  margin: 30px 0 7px;
+  text-align: center;
+  text-decoration: none;
+  background-color: var(--purple-color);
+  color: var(--white-color);
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  border-radius: 10px;
+  padding: auto 0;
+}
+.forgetBtn {
+  color: var(--nero-color);
+  font-weight: 500;
+  font-size: 18px;
+  text-align: center;
+  text-decoration: none;
+}
+.loginFooter {
+  text-align: center;
+  color: var(--nero-color);
+  opacity: 0.5;
+  margin-top: 100px;
+  font-size: 18px;
+  font-weight: 400;
+}
+.ellipses {
+  /* margin-top: -80px; */
+}
+.roundImg {
+  position: absolute;
+  bottom: -13px;
+  right: 0;
+}
+.elipse1 {
+  width: 340px;
+  /* bottom: 1; */
+}
+.elipse2 {
+  width: 240px;
+  /* top: 78.5%; */
+}
