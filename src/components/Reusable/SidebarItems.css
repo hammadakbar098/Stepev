@@ -3,10 +3,10 @@
   align-items: center;
   margin: 0.5vw auto;
   width: 12vw;
-  height: 61px;
+  height: 3.97vw;
   margin-left: -15%;
   padding-left: 41%;
-  padding-right: 20px;
+  padding-right: 1.3vw;
   align-items: center;
 }
 .sidebarItem p {
@@ -22,17 +22,17 @@
 .sidebarItem:hover,
 .active {
   background: #ffffff;
-  box-shadow: 0px 1px 13px rgba(0, 0, 0, 0.03);
-  border-radius: 0px 20px 20px 0px;
+  box-shadow: 0px 0.06vw 0.84vw rgba(0, 0, 0, 0.03);
+  border-radius: 0px 1.3vw 1.3vw 0px;
   cursor: pointer;
 }
 .purpleDot {
-  width: 6px;
+  width: 0.39vw;
   background-color: var(--purple-color);
-  height: 33px;
+  height: 2.14vw;
   position: absolute;
   left: 0;
-  border-radius: 0px 5px 5px 0px;
+  border-radius: 0 0.325vw 0.325vw 0;
   opacity: 0;
 }
 .sidebarItem:hover .purpleDot {
@@ -53,6 +53,7 @@
   text-align: center;
   vertical-align: middle;
   line-height: 1.5vw;
-  margin-left: 10px;
+  margin-left: 0.65vw;
   /* align-items: center; */
+  font-size: 0.78vw;
 }

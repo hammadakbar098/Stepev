@@ -3,18 +3,18 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-top: 74px;
-  margin-bottom: 32px;
+  margin-top: 4.81vw;
+  margin-bottom: 2.08vw;
   padding: 0 5.2vw;
 }
 hr {
   width: 71vw;
-  border-top: 0.5px solid rgba(35, 35, 35, 0.15);
+  border-top: 0.03vw solid rgba(35, 35, 35, 0.15);
   margin-left: 3.38vw;
 }
 .vl {
   height: 3.5vw;
-  border-left: 0.5px solid rgba(35, 35, 35, 0.15);
+  border-left: 0.03vw solid rgba(35, 35, 35, 0.15);
 
   margin: 0 2.08vw;
 }

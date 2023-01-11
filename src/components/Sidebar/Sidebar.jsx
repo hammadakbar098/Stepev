@@ -64,8 +64,9 @@ const Sidebar = () => {
             className="sideItem"
             number={9}
           />
-
-          <img className="dottedImg " src={dotted} alt="" />
+          <div className="dottedAlign">
+            <img className="dottedImg " src={dotted} alt="" />
+          </div>
 
           <div>
             <SidebarItems

@@ -3,6 +3,9 @@ import Sidebar from "../Sidebar/Sidebar";
 import "./Dashboard.css";
 import Navbar from "./../Sidebar/Navbar";
 import DashboardStats from "./DashboardStats";
+import Users from "./../Users/Users";
+import UserProfile from "../Users/UserProfile";
+
 const Dashboard = () => {
   return (
     <>
@@ -12,7 +15,10 @@ const Dashboard = () => {
         </div>
         <div className="dashboardChild2">
           <Navbar />
-          <DashboardStats />
+          {/* <DashboardStats /> */}
+
+          {/* <Users /> */}
+          <UserProfile />
         </div>
       </div>
     </>

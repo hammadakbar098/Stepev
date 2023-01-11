@@ -1,0 +1,93 @@
+.userSearchContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 4.55vw;
+  margin: 2.73vw 0;
+}
+.searchUserBox {
+  width: 48.11vw;
+  height: 3.9vw;
+  background: var(--white-color);
+  box-shadow: 0px 0.26vw 1.23vw rgba(0, 0, 0, 0.04);
+  border-radius: 0.65vw;
+  border: 0;
+  color: var(--nero-color);
+  font-weight: 400;
+  font-size: 1.04vw;
+  padding-left: 1.95vw;
+  font-family: "DM Sans";
+}
+.searchUserBox:focus {
+  outline: none;
+}
+.searchUserBox::placeholder {
+  color: var(--ligthBlue-color);
+}
+.btnFilter {
+  width: 10.02vw;
+  height: 3.9vw;
+  background: var(--nero-color);
+  box-shadow: 0px 0.26vw 1.23vw rgba(0, 0, 0, 0.04);
+  border-radius: 0.65vw;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btnFilter a {
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 0.97vw;
+  color: var(--white-color);
+}
+.filterImg {
+  width: 1.04vw;
+
+  margin-right: 0.65vw;
+}
+
+/* User data table */
+.userTable {
+  width: 90%;
+  margin: 0 4.23vw;
+  border-collapse: collapse;
+  font-family: "DM sans";
+}
+
+thead tr {
+  border-bottom: 0.065vw solid rgba(35, 35, 35, 0.15);
+}
+
+.thead th {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.17vw;
+  color: var(--nero-color);
+}
+
+.firstTd {
+  font-size: 1.041vw;
+  opacity: 1;
+  display: flex;
+  align-items: center;
+}
+.Td {
+  font-size: 0.846vw;
+  opacity: 0.5;
+  color: var(--nero-color);
+}
+
+th {
+  padding-bottom: 1.56vw;
+}
+td {
+  padding-top: 2.92vw;
+}
+.dots {
+  height: 1.17vw;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
