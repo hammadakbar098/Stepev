@@ -6,6 +6,7 @@ import FormButton from "./../Reusable/FormButton";
 import dots from "./../../assets/Images/Dashboard/dots.svg";
 import Strikes from "../Reusable/Strikes";
 import SuspendedSign from "../Reusable/SuspendedSign";
+import SearchBox from "../Reusable/SearchBox";
 const Users = () => {
   return (
     <>
@@ -14,11 +15,7 @@ const Users = () => {
       </div>
       <div className="userSearchContainer">
         <div>
-          <input
-            className="searchUserBox"
-            type="text"
-            placeholder="Search user by name, email..."
-          />
+          <SearchBox />
         </div>
         <div className="btnFilter">
           <img src={filter} alt="" className="filterImg" />

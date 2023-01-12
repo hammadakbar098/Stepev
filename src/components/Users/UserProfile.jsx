@@ -26,7 +26,7 @@ const UserProfile = () => {
   const [earning, setEarning] = useState(false);
   const [warning, setWarning] = useState(false);
   const [campaigns, setCampaigns] = useState(true);
-  const [suspend, setSuspend] = useState(true);
+  const [suspend, setSuspend] = useState(false);
   const handleCampaign = () => {
     setCampaigns(true);
     setEarning(false);

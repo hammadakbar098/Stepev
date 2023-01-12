@@ -5,6 +5,7 @@ import Navbar from "./../Sidebar/Navbar";
 import DashboardStats from "./DashboardStats";
 import Users from "./../Users/Users";
 import UserProfile from "../Users/UserProfile";
+import Campaigns from "../Campaigns/Campaigns";
 
 const Dashboard = () => {
   return (
@@ -18,7 +19,8 @@ const Dashboard = () => {
           {/* <DashboardStats /> */}
 
           {/* <Users /> */}
-          <UserProfile />
+          {/* <UserProfile /> */}
+          <Campaigns />
         </div>
       </div>
     </>
