@@ -7,6 +7,7 @@ import Users from "./../Users/Users";
 import UserProfile from "../Users/UserProfile";
 import Campaigns from "../Campaigns/Campaigns";
 import Wallet from "../Wallet/Wallet";
+import FundProcessing from "../Funds Processing/FundProcessing";
 
 const Dashboard = () => {
   return (
@@ -22,7 +23,8 @@ const Dashboard = () => {
           {/* <Users /> */}
           {/* <UserProfile /> */}
           {/* <Campaigns /> */}
-          <Wallet />
+          {/* <Wallet /> */}
+          <FundProcessing />
         </div>
       </div>
     </>
