@@ -2,22 +2,7 @@
   display: flex;
   align-items: center;
 }
-.funds_notification {
-  width: 6.7vw;
-  height: 2.66vw;
-  border-radius: 3.38vw;
-  padding: 0.65vw 1.82vw;
-  background-color: var(--nero-color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: 0.84vw;
-}
-.funds_notification p {
-  font-weight: 500;
-  font-size: 1.04vw;
-  color: var(--white-color);
-}
+
 /* Filter btn */
 .fundSearchContainer {
   display: flex;
@@ -59,8 +44,8 @@
   color: var(--nero-color);
 }
 .fundsTable td {
-  /* margin: 0;
-  padding: 0; */
+  /* margin-top: 10px; */
+  padding: 0.78vw 0;
 }
 .fundsTable .funds_name {
   font-size: 1.04vw;

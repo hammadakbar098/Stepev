@@ -29,3 +29,9 @@
 .imgCenter {
   margin: 0 auto;
 }
+.link {
+  text-decoration: none;
+}
+.link a {
+  text-decoration: none;
+}

@@ -5,14 +5,13 @@ import SearchBox from "../Reusable/SearchBox";
 import filter from "./../../assets/Images/Dashboard/filter.svg";
 import gross from "./../../assets/Images/Funding/gross.png";
 import picture from "./../../assets/Images/Funding/profile.png";
+import Notification from "../Reusable/Notification";
 const FundProcessing = () => {
   return (
     <>
       <div className="fundsTitle">
         <Heading title="Funds Processing" />
-        <div className="funds_notification">
-          <p>5 New</p>
-        </div>
+        <Notification notification={5} />
       </div>
       {/* SearchBox */}
       <div className="fundSearchContainer">

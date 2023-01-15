@@ -1,3 +1,4 @@
+import { BrowserRouter as Router } from "react-router-dom";
 import "./App.css";
 import Dashboard from "./components/Dashboard/Dashboard";
 // import UserCampaigns from "./components/Users/UserCampaigns";
@@ -7,6 +8,7 @@ function App() {
   return (
     <>
       {/* <Login /> */}
+
       <Dashboard />
     </>
   );

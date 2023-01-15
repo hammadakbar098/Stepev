@@ -5,7 +5,7 @@ const FormButton = ({ title }) => {
   return (
     <>
       <div className="formButton">
-        <a href="/">{title}</a>
+        <a>{title}</a>
       </div>
     </>
   );

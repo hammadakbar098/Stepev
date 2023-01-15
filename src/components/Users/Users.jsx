@@ -7,7 +7,14 @@ import dots from "./../../assets/Images/Dashboard/dots.svg";
 import Strikes from "../Reusable/Strikes";
 import SuspendedSign from "../Reusable/SuspendedSign";
 import SearchBox from "../Reusable/SearchBox";
+import { HashLink as Link } from "react-router-hash-link";
+import { useNavigate } from "react-router-dom";
+
 const Users = () => {
+  const navigate = useNavigate();
+  const handleNavigation = () => {
+    navigate("/users/user-profile");
+  };
   return (
     <>
       <div>
@@ -46,7 +53,9 @@ const Users = () => {
               <td className="Td">Freelancer</td>
               <td className="Td">Moto</td>
               <td align="center">
-                <FormButton title="View profile" />
+                <div onClick={handleNavigation}>
+                  <FormButton title="View profile" />
+                </div>
               </td>
               <td align="center">
                 <img src={dots} alt="" className="dots" />
@@ -62,7 +71,9 @@ const Users = () => {
               <td className="Td">Campaign</td>
               <td className="Td">Nike</td>
               <td align="center">
-                <FormButton title="View profile" />
+                <div onClick={handleNavigation}>
+                  <FormButton title="View profile" />
+                </div>
               </td>
               <td align="center">
                 <img src={dots} alt="" className="dots" />
@@ -75,7 +86,9 @@ const Users = () => {
               <td className="Td">N/A</td>
               <td className="Td">N/A</td>
               <td align="center">
-                <FormButton title="View profile" />
+                <div onClick={handleNavigation}>
+                  <FormButton title="View profile" />
+                </div>
               </td>
               <td align="center">
                 <img src={dots} alt="" className="dots" />
@@ -91,7 +104,9 @@ const Users = () => {
               <td className="Td">N/A</td>
               <td className="Td">N/A</td>
               <td align="center">
-                <FormButton title="View profile" />
+                <div onClick={handleNavigation}>
+                  <FormButton title="View profile" />
+                </div>
               </td>
               <td align="center">
                 <img src={dots} alt="" className="dots" />
@@ -104,7 +119,9 @@ const Users = () => {
               <td className="Td">N/A</td>
               <td className="Td">N/A</td>
               <td align="center">
-                <FormButton title="View profile" />
+                <div onClick={handleNavigation}>
+                  <FormButton title="View profile" />
+                </div>
               </td>
               <td align="center">
                 <img src={dots} alt="" className="dots" />
@@ -119,7 +136,9 @@ const Users = () => {
               <td className="Td">Campaign</td>
               <td className="Td">Nike</td>
               <td align="center">
-                <FormButton title="View profile" />
+                <div onClick={handleNavigation}>
+                  <FormButton title="View profile" />
+                </div>
               </td>
               <td align="center">
                 <img src={dots} alt="" className="dots" />
