@@ -7,7 +7,7 @@ const Strikes = ({ strike }) => {
     <>
       <div className="strikesContainer">
         <img src={warning} className="warning" />
-        <p className="strikes">{strike}</p>
+        <p>{strike}</p>
       </div>
     </>
   );

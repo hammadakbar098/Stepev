@@ -3,7 +3,7 @@
   margin-left: 0.585vw;
   margin-right: 0.325vw;
 }
-.strikes {
+.strikesContainer p {
   font-weight: 400;
   font-size: 0.846vw;
   color: var(--nero-color);
