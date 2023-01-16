@@ -3,15 +3,36 @@ import "./Navbar.css";
 import bell from "./../../assets/Images/Navbar/bell.svg";
 import date from "./../../assets/Images/Navbar/date.svg";
 import profile from "./../../assets/Images/Navbar/profile.svg";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  const navigate = useNavigate();
+  const d = new Date();
+  const todayDate = d.getDate() + " " + monthNames[d.getMonth()];
+  const handleNavigation = () => {
+    navigate("/notifications");
+  };
   return (
     <>
       <div className="containerNavbar">
         <div className="alighNavData">
           <div className="alighNavData">
             <img className="date" src={date} alt="Today's date" />
-            <p className="dateDay">01 Jan</p>
+            <p className="dateDay">{todayDate}</p>
           </div>
           <div className="vl"></div>
           <div className="adminText">
@@ -27,7 +48,7 @@ const Navbar = () => {
           </div>
         </div>
         <div className="alighNavData">
-          <div className="bellIcon">
+          <div className="bellIcon" onClick={handleNavigation}>
             <img src={bell} alt="Notification icons" />
             {/* <div className="notif"></div> */}
           </div>

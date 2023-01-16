@@ -43,6 +43,7 @@ hr {
   display: flex;
   border: 1px dotted black;
   border-radius: 50%;
+  cursor: pointer;
 }
 .notif {
   width: 0.58vw;

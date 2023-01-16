@@ -5,7 +5,12 @@ import filter from "./../../assets/Images/Dashboard/filter.svg";
 import SearchBox from "./../Reusable/SearchBox";
 import campaignprofile from "./../../assets/Images/Campaign/campaignprofile.png";
 import dot from "./../../assets/Images/Dashboard/dots.svg";
+import { useNavigate } from "react-router-dom";
 const Campaigns = () => {
+  const navigate = useNavigate();
+  const handleNavigation = () => {
+    navigate("/campaigns/campaign");
+  };
   return (
     <>
       <Heading title="Campaigns" />
@@ -41,7 +46,10 @@ const Campaigns = () => {
               <td className="campaignDull campaignEmail">Shaheer@gmail.com</td>
               <td>
                 <div className="campaign_action_btns">
-                  <div className="campaign_action_btn1">
+                  <div
+                    className="campaign_action_btn1"
+                    onClick={handleNavigation}
+                  >
                     <p>View Campaign</p>
                   </div>
                   <div className="campaign_action_btn2">
