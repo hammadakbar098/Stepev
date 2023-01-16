@@ -8,6 +8,8 @@
   font-size: 0.846vw;
   color: var(--nero-color);
   opacity: 0.5;
+  margin: 0;
+  padding: 0;
 }
 .strikesContainer {
   display: flex;

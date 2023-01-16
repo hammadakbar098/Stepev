@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Users.css";
 import Heading from "./../Reusable/Heading";
 import filter from "./../../assets/Images/Dashboard/filter.svg";
@@ -9,11 +9,16 @@ import SuspendedSign from "../Reusable/SuspendedSign";
 import SearchBox from "../Reusable/SearchBox";
 import { HashLink as Link } from "react-router-hash-link";
 import { useNavigate } from "react-router-dom";
+import PopupMenu from "./PopupMenu";
 
 const Users = () => {
+  const [menu, setMenu] = useState(false);
   const navigate = useNavigate();
   const handleNavigation = () => {
     navigate("/users/user-profile");
+  };
+  const handleMenu = () => {
+    setMenu(!menu);
   };
   return (
     <>
@@ -58,7 +63,7 @@ const Users = () => {
                 </div>
               </td>
               <td align="center">
-                <img src={dots} alt="" className="dots" />
+                <PopupMenu ban={true} />
               </td>
             </tr>
             <tr className="tbody">
@@ -76,7 +81,7 @@ const Users = () => {
                 </div>
               </td>
               <td align="center">
-                <img src={dots} alt="" className="dots" />
+                <PopupMenu />
               </td>
             </tr>
             <tr className="tbody">
@@ -91,7 +96,7 @@ const Users = () => {
                 </div>
               </td>
               <td align="center">
-                <img src={dots} alt="" className="dots" />
+                <PopupMenu />
               </td>
             </tr>
             <tr className="tbody">
@@ -109,7 +114,7 @@ const Users = () => {
                 </div>
               </td>
               <td align="center">
-                <img src={dots} alt="" className="dots" />
+                <PopupMenu />
               </td>
             </tr>
             <tr className="tbody">
@@ -124,7 +129,7 @@ const Users = () => {
                 </div>
               </td>
               <td align="center">
-                <img src={dots} alt="" className="dots" />
+                <PopupMenu />
               </td>
             </tr>
             <tr className="tbody">
@@ -141,7 +146,7 @@ const Users = () => {
                 </div>
               </td>
               <td align="center">
-                <img src={dots} alt="" className="dots" />
+                <PopupMenu />
               </td>
             </tr>
           </tbody>

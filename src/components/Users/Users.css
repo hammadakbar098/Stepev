@@ -73,3 +73,14 @@ td {
   padding: 0;
   cursor: pointer;
 }
+
+/* Popup menu */
+.menuPopup {
+  position: absolute;
+  margin-left: -170px;
+  margin-top: -15px;
+  width: 166px;
+  height: 72px;
+  border-radius: 4px;
+  background-color: var(--nero-color);
+}
