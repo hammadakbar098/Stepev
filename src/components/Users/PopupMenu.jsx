@@ -3,13 +3,22 @@ import dots from "./../../assets/Images/Dashboard/dots.svg";
 import lightban from "./../../assets/Images/User Profile/lightban.svg";
 import darkban from "./../../assets/Images/User Profile/darkban.svg";
 import bin2 from "./../../assets/Images/User Profile/bin2.svg";
-
+import { deleteUser } from "../../api/axios";
 import "./PopupMenu.css";
-const PopupMenu = ({ ban }) => {
+
+const PopupMenu = ({ ban, userId }) => {
   const [menu, setMenu] = useState(false);
   const handleMenu = () => {
     setMenu(!menu);
   };
+
+  const apiCall = (id, e) => {
+    e.preventDefault();
+    deleteUser(id);
+    setMenu(!menu);
+    console.log(userId);
+  };
+
   return (
     <>
       <img
@@ -22,7 +31,12 @@ const PopupMenu = ({ ban }) => {
       />
       {menu ? (
         <div className="menuPopup">
-          <a href="">
+          <a
+            href=""
+            onClick={(e) => {
+              apiCall(userId, e);
+            }}
+          >
             <p>Delete User</p> <img src={bin2} alt="" />
           </a>
           <hr className="popupLine" />

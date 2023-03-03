@@ -5,7 +5,7 @@ import date from "./../../assets/Images/Navbar/date.svg";
 import profile from "./../../assets/Images/Navbar/profile.svg";
 import { useNavigate } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ name, image }) => {
   const monthNames = [
     "Jan",
     "Feb",
@@ -36,7 +36,7 @@ const Navbar = () => {
           </div>
           <div className="vl"></div>
           <div className="adminText">
-            <p>Hi, Admin!</p>
+            <p>Hi, {name}!</p>
           </div>
           <div className="vl"></div>
           <div>
@@ -52,7 +52,7 @@ const Navbar = () => {
             <img src={bell} alt="Notification icons" />
             {/* <div className="notif"></div> */}
           </div>
-          <img src={profile} alt="Profile picture" className="profilePicture" />
+          <img src={image} alt="Profile picture" className="profilePicture" />
         </div>
       </div>
       <hr />

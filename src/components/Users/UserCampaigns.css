@@ -32,6 +32,8 @@ th {
   font-weight: 400;
   color: var(--nero-color);
   font-size: 1.04vw;
+  display: flex;
+  align-items: center;
 }
 .user_light {
   font-weight: 400;
@@ -59,4 +61,10 @@ th {
   text-decoration: none;
   color: var(--white-color);
   font-weight: 400;
+}
+.startupownerImage {
+  width: 2.47vw;
+  height: 2.47vw;
+  margin-right: 0.91vw;
+  border-radius: 50%;
 }

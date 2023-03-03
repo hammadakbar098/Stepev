@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./UserProfile.css";
 // Reusable Components
 import Heading from "./../Reusable/Heading";
@@ -21,12 +21,29 @@ import earn from "./../../assets/Images/User Profile/earning.svg";
 import warnblack from "./../../assets/Images/User Profile/warnblack.svg";
 import suspendwhite from "./../../assets/Images/User Profile/suspendwhite.png";
 import UserWarning from "./UserWarning";
+import { freelancerProfile } from "../../api/axios";
+import { useLocation } from "react-router-dom";
 
 const UserProfile = () => {
+  const stateData = useLocation();
+  const [data, setData] = useState();
   const [earning, setEarning] = useState(false);
   const [warning, setWarning] = useState(false);
   const [campaigns, setCampaigns] = useState(true);
   const [suspend, setSuspend] = useState(false);
+  const [freelancerId, setFreelancerId] = useState(
+    stateData.state.freelancerId
+  );
+
+  useEffect(() => {
+    const apiCall = async () => {
+      var response_data = await freelancerProfile(freelancerId);
+      setData(response_data.data[0]);
+      console.log(response_data.data);
+    };
+    // console.log(stateData.state.freelancerId);
+    apiCall();
+  }, []);
   const handleCampaign = () => {
     setCampaigns(true);
     setEarning(false);
@@ -45,20 +62,35 @@ const UserProfile = () => {
   const handleSuspend = () => {
     setSuspend(!suspend);
   };
+  const date = (d) => {
+    const date = new Date(d);
+    const formattedDate = date.toLocaleDateString("en-GB", {
+      day: "numeric",
+      month: "numeric",
+      year: "numeric",
+    });
+    return formattedDate;
+  };
   return (
     <>
       <Heading title="Freelancer Profile" />
       <div className="userProfileContainer">
         <div className="userProfilePicture">
-          <img src={profile} alt="profile" />
+          <img
+            Crossorigin="anonymous"
+            src={`https://stepdev.up.railway.app/media/getImage/${data?.avatar}`}
+            alt="profile"
+          />
         </div>
         <div className="dataUser">
           <div className="alignUserProfile">
             <div className="userName">
-              <p className="userProfileName">Huzayfah Hanif</p>
-              <div className="activeIcon">
-                <p>Active</p>
-              </div>
+              <p className="userProfileName">{data?.name}</p>
+              {data?.accountActive ? (
+                <div className="activeIcon">
+                  <p>Active</p>
+                </div>
+              ) : null}
             </div>
             <div className="userActionBtns">
               {suspend ? (
@@ -87,25 +119,25 @@ const UserProfile = () => {
           <div className="infoTabPadding">
             <InfoTab
               icon1={email}
-              text1="huzi@gmail.com"
+              text1={data?.email}
               icon2={gender}
-              text2="Male"
+              text2={data?.gender}
             />
             <InfoTab
               icon1={call}
-              text1="033343539"
+              text1={data?.phone}
               icon2={bag}
-              text2="Designer"
+              text2={data?.jobTitle}
             />
             <div className="infoTabDate">
               <InfoTab
                 icon1={location}
-                text1="New Jersey"
+                text1={data?.city}
                 icon2={calender}
                 text2="21/Aug/2000"
               />
 
-              <p>Joined 20 Oct 2022</p>
+              <p>Joined {date(data?.joinedOn)}</p>
             </div>
           </div>
         </div>
@@ -134,11 +166,11 @@ const UserProfile = () => {
       </div>
       <div className="campaignsContainer">
         {campaigns ? (
-          <UserCampaigns />
+          <UserCampaigns freelancerId={freelancerId} />
         ) : earning ? (
-          <UserEarnings />
+          <UserEarnings freelancerId={freelancerId} />
         ) : (
-          <UserWarning />
+          <UserWarning freelancerId={freelancerId} />
         )}
       </div>
     </>

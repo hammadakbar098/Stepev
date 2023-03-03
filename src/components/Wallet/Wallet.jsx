@@ -1,27 +1,59 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Wallet.css";
 import WalletCard from "./WalletCard";
 import Heading from "./../Reusable/Heading";
 import UserWallet from "./UserWallet";
+import { adminWalletDetails } from "../../api/axios";
 
 const Wallet = () => {
+  const [data, setData] = useState();
+  useEffect(() => {
+    const apiCall = async () => {
+      var response_data = await adminWalletDetails();
+      setData(response_data);
+    };
+    apiCall();
+  }, []);
+  const limitLength = (amount) => {
+    var x = amount;
+    x = Math.floor(x * 100) / 100;
+    return x;
+  };
+  const date = (d) => {
+    const date = new Date(d);
+    const formattedDate = date.toLocaleDateString("en-GB", {
+      day: "numeric",
+      month: "numeric",
+      year: "numeric",
+    });
+    return formattedDate;
+  };
   return (
     <>
       <div className="wallet">
         <div className="walletChild1">
           <div className="walletCards">
-            <WalletCard amount="143,000" info="Total Amount" />
-            <WalletCard amount="141,000" info="Available for Withdrawal" />
-            <WalletCard amount="103,000" info="Withdrawn" />
+            <WalletCard
+              amount={limitLength(data?.wallet.netIncome)}
+              info="Total Amount"
+            />
+            <WalletCard
+              amount={limitLength(data?.wallet.availableBalance)}
+              info="Available for Withdrawal"
+            />
+            <WalletCard
+              amount={limitLength(data?.wallet.withdrawn)}
+              info="Withdrawn"
+            />
           </div>
           <div className="walletTitle">
             <Heading title="Wallet" />
           </div>
           <div className="walletDetails">
             <UserWallet
-              balance={"143,000"}
-              profitPercent={21}
-              withdrawnAmount="101,000.53"
+              balance={limitLength(data?.wallet.netIncome)}
+              profitPercent={data?.increasePercentage}
+              withdrawnAmount={limitLength(data?.wallet.withdrawn)}
               profit="131,000.53"
             />
             <div className="withdraw_amount">
@@ -54,21 +86,19 @@ const Wallet = () => {
             </thead>
 
             <tbody align="center">
-              <tr>
+              {/* <tr>
                 <td className="withdrawId">#ID-001</td>
                 <td className="withdrawAmount">$2400</td>
                 <td className="withdrawDate">20/Aug/2022</td>
-              </tr>
-              <tr>
-                <td className="withdrawId">#ID-001</td>
-                <td className="withdrawAmount">$2400</td>
-                <td className="withdrawDate">20/Aug/2022</td>
-              </tr>
-              <tr>
-                <td className="withdrawId">#ID-001</td>
-                <td className="withdrawAmount">$2400</td>
-                <td className="withdrawDate">20/Aug/2022</td>
-              </tr>
+              </tr> */}
+
+              {data?.thisMonthAppEarning.map((item, index) => (
+                <tr key={index}>
+                  <td className="withdrawId">#ID-0{index}</td>
+                  <td className="withdrawAmount">${item.appEarning}</td>
+                  <td className="withdrawDate">{date(item.createdAt)}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

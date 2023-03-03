@@ -1,20 +1,62 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Skill.css";
 import Heading from "./../Reusable/Heading";
 import Notification from "../Reusable/Notification";
 import SearchBox from "./../Reusable/SearchBox";
 import AddSkill from "./AddSkill";
 import close from "./../../assets/Images/close.png";
+import {
+  viewSkills,
+  deleteSkill,
+  addSkill,
+  updateSkill,
+} from "../../api/axios";
 
 const Skill = () => {
   const [skill, setSkill] = useState(false);
+  const [updateSkill, setUpdateSkill] = useState(false);
+  const [skillID, setSkillId] = useState();
+  const [data, setData] = useState();
+  const [handleValue, setHandleValue] = useState();
+  const [state, setState] = useState(false);
+
+  const apiCall = async () => {
+    var response_data = await viewSkills();
+    setData(response_data);
+  };
   const handleSkill = () => {
     setSkill(!skill);
-    console.log(skill);
+    setState(!state);
   };
+
+  const handleUpdate = () => {
+    setUpdateSkill(!updateSkill);
+    setState(!state);
+  };
+  const handleUpdateSkill = (value, id) => {
+    setHandleValue(value);
+    setSkillId(id);
+    setUpdateSkill(!updateSkill);
+    setState(!state);
+  };
+
+  const handleDeleteSkill = (value, id) => {
+    setHandleValue(value);
+    setSkillId(id);
+    deleteSkill(value, id);
+    apiCall();
+    setState(!state);
+  };
+
+  useEffect(() => {
+    apiCall();
+
+    console.log(data);
+  }, [state]);
+
   return (
     <>
-      <div className={skill ? "blur" : null}>
+      <div className={skill ? "blur" : updateSkill ? "blur" : null}>
         <div className="skillHeader ">
           <Heading title="Skills" />
           <div onClick={() => handleSkill()} className="skill_add_btn">
@@ -34,22 +76,7 @@ const Skill = () => {
             </tr>
           </thead>
           <tbody>
-            <tr align="center">
-              <td align="left" className="skillName">
-                Graphic Designing
-              </td>
-              <td className="skillDate">12,oct,2022</td>
-              <td className="totalFreelancers">2000</td>
-              <td className="skillsBtns">
-                <div className="skillDeleteBtn">
-                  <p>Delete</p>
-                </div>
-                <div className="skillEditBtn" onClick={() => handleSkill()}>
-                  <p>Edit</p>
-                </div>
-              </td>
-            </tr>
-            <tr align="center">
+            {/* <tr align="center">
               <td align="left" className="skillName">
                 <p>Wordpress Development</p>
               </td>
@@ -63,17 +90,69 @@ const Skill = () => {
                   <p>Edit</p>
                 </div>
               </td>
-            </tr>
+            </tr> */}
+            {data?.map((item, index) => (
+              <tr align="center" key={index}>
+                <td align="left" className="skillName">
+                  <p>{item?.title}</p>
+                </td>
+                <td className="skillDate">12,oct,2022</td>
+                <td className="totalFreelancers">{item?.count}</td>
+                <td className="skillsBtns">
+                  <div
+                    className="skillDeleteBtn"
+                    onClick={() => {
+                      handleDeleteSkill(item?.title, item?.skillId);
+                    }}
+                  >
+                    <p>Delete</p>
+                  </div>
+                  <div
+                    className="skillEditBtn"
+                    onClick={() =>
+                      handleUpdateSkill(item?.title, item?.skillId)
+                    }
+                  >
+                    <p>Edit</p>
+                  </div>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
 
       {skill ? (
         <div className="add_skill">
-          <div className="skillClose" onClick={() => setSkill(!skill)}>
+          <div
+            className="skillClose"
+            onClick={() => {
+              handleSkill();
+            }}
+          >
             <img align="right" src={close} alt="Close btn" />
           </div>
-          <AddSkill />
+          <AddSkill
+            title="Adding skill"
+            holder="Add skill"
+            btnValue="Add"
+            funCall={true}
+          />
+        </div>
+      ) : null}
+
+      {updateSkill ? (
+        <div className="add_skill">
+          <div className="skillClose" onClick={() => handleUpdate()}>
+            <img align="right" src={close} alt="Close btn" />
+          </div>
+          <AddSkill
+            title="Updating skill"
+            holder={handleValue}
+            btnValue="Update"
+            funCall={false}
+            id={skillID}
+          />
         </div>
       ) : null}
     </>

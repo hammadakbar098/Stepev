@@ -115,3 +115,34 @@
 .campaignDate {
   padding-right: 6.51vw;
 }
+
+/* Pagination */
+.paginationContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: 3.25vw;
+  margin-top: 3.25vw;
+}
+.paginationContainer p {
+  font-weight: 500;
+  font-size: 0.91vw;
+}
+.paginationContainer img {
+  cursor: pointer;
+  width: 0.81vw;
+}
+.currentPage {
+  margin: 0 0.65vw;
+}
+.totalPages {
+  margin-left: 0.846vw;
+}
+.currentPageColor {
+  opacity: 0.5;
+}
+
+.validBtn {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}

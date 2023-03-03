@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Campaigns.css";
 import Heading from "./../Reusable/Heading";
 import filter from "./../../assets/Images/Dashboard/filter.svg";
@@ -6,11 +6,40 @@ import SearchBox from "./../Reusable/SearchBox";
 import campaignprofile from "./../../assets/Images/Campaign/campaignprofile.png";
 import dot from "./../../assets/Images/Dashboard/dots.svg";
 import { useNavigate } from "react-router-dom";
+import { getCampaigns, date } from "../../api/axios";
+import activeBtn from "./../../assets/Images/Pagination/activeBtn.svg";
+import btn from "./../../assets/Images/Pagination/btn.svg";
+
 const Campaigns = () => {
+  const [data, setData] = useState();
+  const [totalPage, setTotalPage] = useState();
+  const [metaData, setMetaData] = useState();
+
   const navigate = useNavigate();
   const handleNavigation = () => {
     navigate("/campaigns/campaign");
   };
+
+  const callApi = async (count) => {
+    var response_data = await getCampaigns(count, 10);
+    console.log(Math.ceil(response_data.metaData[0].total / 10));
+    setData(response_data.startups);
+    setMetaData(response_data.metaData[0]);
+    setTotalPage(Math.ceil(response_data.metaData[0].total / 10));
+  };
+
+  const handleNextPage = () => {
+    let count = metaData.page + 1;
+    callApi(count);
+  };
+  const handlePreviousPage = () => {
+    let count = metaData.page - 1;
+    callApi(count);
+  };
+
+  useEffect(() => {
+    callApi(1);
+  }, []);
   return (
     <>
       <Heading title="Campaigns" />
@@ -35,7 +64,7 @@ const Campaigns = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
+            {/* <tr>
               <td className="campaignTh">
                 <div>
                   <img src={campaignprofile} alt="User" /> <p>Moto Mobiles</p>
@@ -58,9 +87,73 @@ const Campaigns = () => {
                   <img src={dot} alt="More options" />
                 </div>
               </td>
-            </tr>
+            </tr> */}
+            {data?.map((item, index) => (
+              <tr key={index}>
+                <td className="campaignTh">
+                  <div>
+                    <img
+                      Crossorigin="anonymous"
+                      src={`https://stepdev.up.railway.app/media/getImage/${item.logo}`}
+                      alt="User"
+                    />{" "}
+                    <p>{item.businessName}</p>
+                  </div>
+                </td>
+                <td className="campaignDull campaignDate">
+                  {date(item.createdAt)}
+                </td>
+                <td className="campaignAdmin">{item.admin}</td>
+                <td className="campaignDull campaignEmail">{item.email}</td>
+                <td>
+                  <div className="campaign_action_btns">
+                    <div
+                      className="campaign_action_btn1"
+                      onClick={handleNavigation}
+                    >
+                      <p>View Campaign</p>
+                    </div>
+                    <div className="campaign_action_btn2">
+                      <p>Approved</p>
+                    </div>
+                    <img src={dot} alt="More options" />
+                  </div>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
+        <div className="paginationContainer">
+          <img
+            src={metaData?.page === 1 ? btn : activeBtn}
+            alt="Previous"
+            onClick={
+              metaData?.page === 1
+                ? null
+                : () => {
+                    handlePreviousPage();
+                  }
+            }
+            className={metaData?.page === 1 ? null : "validBtn"}
+          />
+          <p className="currentPage">{metaData?.page}</p>
+          <img
+            src={metaData?.page === totalPage ? btn : activeBtn}
+            alt="Next"
+            onClick={
+              metaData?.page === totalPage
+                ? null
+                : () => {
+                    handleNextPage();
+                  }
+            }
+            className={metaData?.page === totalPage ? "validBtn" : null}
+          />
+          <p className="totalPages">
+            <span className="currentPageColor">Page {metaData?.page}</span> of{" "}
+            {totalPage}
+          </p>
+        </div>
       </div>
     </>
   );

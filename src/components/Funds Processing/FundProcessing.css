@@ -65,6 +65,7 @@
   width: 2.47vw;
   height: 2.47vw;
   margin-right: 0.911vw;
+  border-radius: 50%;
 }
 .alignFundProfile {
   display: flex;
@@ -166,4 +167,8 @@
   font-weight: 400;
   font-size: 0.846vw;
   color: var(--white-color);
+}
+.fundsUserId {
+  font-weight: 700;
+  font-size: 1.04vw;
 }

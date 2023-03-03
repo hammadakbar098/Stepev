@@ -71,6 +71,7 @@
 .warningProfile {
   width: 2.47vw;
   height: 2.47vw;
+  border-radius: 50%;
 }
 .warnUserName {
   font-weight: 400;
@@ -146,4 +147,59 @@
   cursor: pointer;
   height: 1.17vw;
   width: 0.26vw;
+}
+/* Pagination */
+.paginationContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: 3.25vw;
+  margin-top: 3.25vw;
+}
+.paginationContainer p {
+  font-weight: 500;
+  font-size: 0.91vw;
+}
+.paginationContainer img {
+  cursor: pointer;
+  width: 0.81vw;
+}
+.currentPage {
+  margin: 0 0.65vw;
+}
+.totalPages {
+  margin-left: 0.846vw;
+}
+.currentPageColor {
+  opacity: 0.5;
+}
+
+.validBtn {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
+/* Susprend reason */
+.suspendReason {
+  width: 32.5vw;
+  height: 19.5vw;
+  border-radius: 1.3vw;
+  position: absolute;
+
+  background-color: var(--white-color);
+  position: absolute;
+  top: 40%;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 1;
+}
+.handleBgBlur {
+  filter: blur(2px);
+}
+
+.suspendReason p {
+  margin-top: 2.27vw;
+  margin-left: 1.95vw;
 }

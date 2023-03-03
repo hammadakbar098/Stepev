@@ -1,18 +1,50 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import InfoCard from "../Reusable/InfoCard";
 import wallet from "./../../assets/Images/User Profile/cryptowallet.png";
 import profile from "./../../assets/Images/User Profile/profile.png";
 import polygon from "./../../assets/Images/User Profile/polygon.svg";
 import "./UserEarnings.css";
 import UserInfo from "./UserInfo";
-const UserEarnings = () => {
+import { freelancerEarning } from "../../api/axios";
+const UserEarnings = ({ freelancerId }) => {
+  const [data, setData] = useState();
+  useEffect(() => {
+    const apiCall = async () => {
+      var response_data = await freelancerEarning(freelancerId);
+      setData(response_data[0]);
+    };
+    apiCall();
+  }, []);
   return (
     <>
       <div className="parentCard">
-        <InfoCard amount="15,209" info="Total Amount" />
-        <InfoCard amount="15,109" info="Available for withdrawl" />
-        <InfoCard amount="100" info="Available for withdrawl" />
-        <InfoCard amount="9.5" info="Paused" />
+        <InfoCard
+          amount={
+            data?.totalAmount
+              ? data.totalAmount
+              : data?.totalAmount === 0
+              ? 0
+              : "N/A"
+          }
+          info="Total Amount"
+        />
+        <InfoCard
+          amount={
+            data?.availableForWithdrawl
+              ? data.availableForWithdrawl
+              : data?.availableForWithdrawl === 0
+              ? 0
+              : "N/A"
+          }
+          info="Available for withdrawl"
+        />
+        <InfoCard
+          amount={
+            data?.pending ? data.pending : data?.pending === 0 ? 0 : "N/A"
+          }
+          info="Pending Amount"
+        />
+        {/* <InfoCard amount="9.5" info="Paused" /> */}
       </div>
       <div className="userRecord">
         <div className="user_record_align">
@@ -20,7 +52,13 @@ const UserEarnings = () => {
           <div className="user_earning">
             <div>
               <p>
-                <span className="user_earn">15,209</span>
+                <span className="user_earn">
+                  {data?.totalAmount
+                    ? data.totalAmount
+                    : data?.totalAmount === 0
+                    ? 0
+                    : "N/A"}
+                </span>
                 <span className="earning_currency">USD</span>
               </p>
               <p className="user_percent">
@@ -38,7 +76,7 @@ const UserEarnings = () => {
           </div>
         </div>
         {/* User Record */}
-        <div className="user_record_align">
+        {/* <div className="user_record_align">
           <p className="userRecordTitle">Record</p>
           <div className="user_record">
             <div className="user_record_border">
@@ -55,7 +93,6 @@ const UserEarnings = () => {
                 </div>
               </div>
             </div>
-            {/*  */}
             <div className="user_record_border">
               <UserInfo
                 img={profile}
@@ -71,9 +108,9 @@ const UserEarnings = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         {/* Pending Payments */}
-        <div className="user_record_align">
+        {/* <div className="user_record_align">
           <div>
             <p className="userRecordTitle">Pending Payments</p>
           </div>
@@ -105,7 +142,7 @@ const UserEarnings = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );

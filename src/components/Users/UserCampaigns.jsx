@@ -1,30 +1,29 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import FormButton from "../Reusable/FormButton";
 import "./UserCampaigns.css";
+import { freelancerCampaigns } from "../../api/axios";
 
-const UserCampaigns = () => {
+const UserCampaigns = ({ freelancerId }) => {
+  const [data, setData] = useState();
+  useEffect(() => {
+    const apiCall = async () => {
+      var response_data = await freelancerCampaigns(freelancerId);
+      console.log(response_data);
+      setData(response_data.data);
+    };
+    apiCall();
+  }, []);
+  const date = (d) => {
+    const date = new Date(d);
+    const formattedDate = date.toLocaleDateString("en-GB", {
+      day: "numeric",
+      month: "numeric",
+      year: "numeric",
+    });
+    return formattedDate;
+  };
   return (
     <>
-      {/* <tbody className="xyz">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Date Created</th>
-            <th>Admin</th>
-            <th>Role</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Moto Mobiles</td>
-            <td>20/08/2022</td>
-            <td>Shaheer Ahmed</td>
-            <td>Designer</td>
-            <td>view Campaign</td>
-          </tr>
-        </tbody>
-      </tbody> */}
       <table className="userCampaignTable">
         <thead>
           <tr className="campaignsThead">
@@ -39,7 +38,7 @@ const UserCampaigns = () => {
         </thead>
 
         <tbody>
-          <tr>
+          {/* <tr>
             <td className="user_name">Moto Mobiles</td>
             <td className="user_light" align="center">
               20/11/2022
@@ -55,24 +54,34 @@ const UserCampaigns = () => {
                 <a href="/">View Campaigns</a>
               </div>
             </td>
-          </tr>
-          <tr>
-            <td className="user_name">Moto Mobiles</td>
-            <td className="user_light" align="center">
-              20/11/2022
-            </td>
-            <td className="user_bold" align="center">
-              Shaheer Ahmed
-            </td>
-            <td className="user_light" align="center">
-              Freelancer
-            </td>
-            <td align="center">
-              <div className="viewCampaignsBtn">
-                <a href="/">View Campaigns</a>
-              </div>
-            </td>
-          </tr>
+          </tr> */}
+          {data?.map((item, index) => (
+            <tr key={index}>
+              <td className="user_name">
+                {/* <div className="startupownerImage"></div> */}
+                <img
+                  className="startupownerImage"
+                  src={item.startupAvatar}
+                  alt="startup"
+                />
+                {item.startupOwnerName}
+              </td>
+              <td className="user_light" align="center">
+                {date(item.startupCreatetionDate)}
+              </td>
+              <td className="user_bold" align="center">
+                Shaheer Ahmed
+              </td>
+              <td className="user_light" align="center">
+                {item.freelancerRole}
+              </td>
+              <td align="center">
+                <div className="viewCampaignsBtn">
+                  <a href="/">View Campaigns</a>
+                </div>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </>

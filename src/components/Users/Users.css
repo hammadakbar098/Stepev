@@ -55,6 +55,12 @@ thead tr {
   display: flex;
   align-items: center;
 }
+.firstTd .user_image {
+  width: 2.47vw;
+  height: 2.47vw;
+  margin-right: 0.91vw;
+  border-radius: 50%;
+}
 .Td {
   font-size: 0.846vw;
   opacity: 0.5;
@@ -83,4 +89,73 @@ td {
   height: 72px;
   border-radius: 4px;
   background-color: var(--nero-color);
+}
+
+/* Filter box */
+.filterBox {
+  position: absolute;
+  right: 0;
+  z-index: 1;
+  margin-right: 4.55vw;
+  margin-top: -1.3vw;
+  width: 27.47vw;
+  height: 27.14vw;
+  border-radius: 0.97vw;
+  background-color: var(--white-color);
+  border: 0.065vw solid rgba(0, 0, 0, 0.13);
+  box-shadow: 0px 0.26vw 4.62vw rgba(0, 0, 0, 0.04);
+}
+.filterHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.91vw;
+  margin-top: 0.84vw;
+}
+
+.filterHeader img {
+  width: 1.1vw;
+  height: 1.1vw;
+  cursor: pointer;
+}
+.filterHeader p {
+  font-weight: 400;
+  font-size: 1.56vw;
+  font-family: "DM Sans";
+}
+.filterBox hr {
+  width: 99%;
+  margin: 0 auto;
+  border: 0.001vw solid rgba(35, 35, 35, 0.26);
+}
+
+/* Pagination */
+.paginationContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: 3.25vw;
+  margin-top: 3.25vw;
+}
+.paginationContainer p {
+  font-weight: 500;
+  font-size: 0.91vw;
+}
+.paginationContainer img {
+  cursor: pointer;
+  width: 0.81vw;
+}
+.currentPage {
+  margin: 0 0.65vw;
+}
+.totalPages {
+  margin-left: 0.846vw;
+}
+.currentPageColor {
+  opacity: 0.5;
+}
+
+.validBtn {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
 }
