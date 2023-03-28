@@ -12,6 +12,7 @@ import profile from "./../../assets/Images/profile.svg";
 import skills from "./../../assets/Images/skill.svg";
 import settings from "./../../assets/Images/setting.svg";
 import dotted from "./../../assets/Images/dotted.svg";
+import earn from "./../../assets/Images/Earnings/earning.svg";
 import SidebarItems from "../Reusable/SidebarItems";
 import { HashLink as NavLink } from "react-router-hash-link";
 
@@ -24,6 +25,8 @@ const Sidebar = () => {
   const [warning, setWarning] = useState(false);
   const [skill, setSkill] = useState(false);
   const [setting, setSetting] = useState(false);
+  const [earning, setEarning] = useState(false);
+  const [category, setCategory] = useState(false);
 
   const handleOverview = () => {
     setOverviews(true);
@@ -34,6 +37,8 @@ const Sidebar = () => {
     setWarning(false);
     setSkill(false);
     setSetting(false);
+    setEarning(false);
+    setCategory(false);
   };
   const handleUser = () => {
     setOverviews(false);
@@ -43,7 +48,9 @@ const Sidebar = () => {
     setFunds(false);
     setWarning(false);
     setSkill(false);
+    setCategory(false);
     setSetting(false);
+    setEarning(false);
   };
   const handleCampaign = () => {
     setOverviews(false);
@@ -54,6 +61,8 @@ const Sidebar = () => {
     setWarning(false);
     setSkill(false);
     setSetting(false);
+    setCategory(false);
+    setEarning(false);
   };
   const handleWallet = () => {
     setOverviews(false);
@@ -64,6 +73,8 @@ const Sidebar = () => {
     setWarning(false);
     setSkill(false);
     setSetting(false);
+    setCategory(false);
+    setEarning(false);
   };
   const handleFund = () => {
     setOverviews(false);
@@ -74,6 +85,8 @@ const Sidebar = () => {
     setWarning(false);
     setSkill(false);
     setSetting(false);
+    setCategory(false);
+    setEarning(false);
   };
   const handleWarning = () => {
     setOverviews(false);
@@ -84,6 +97,8 @@ const Sidebar = () => {
     setWarning(true);
     setSkill(false);
     setSetting(false);
+    setCategory(false);
+    setEarning(false);
   };
   const handleSkill = () => {
     setOverviews(false);
@@ -94,6 +109,8 @@ const Sidebar = () => {
     setWarning(false);
     setSkill(true);
     setSetting(false);
+    setCategory(false);
+    setEarning(false);
   };
   const handleSetting = () => {
     setOverviews(false);
@@ -104,6 +121,32 @@ const Sidebar = () => {
     setWarning(false);
     setSkill(false);
     setSetting(true);
+    setCategory(false);
+    setEarning(false);
+  };
+  const handleEarning = () => {
+    setOverviews(false);
+    setUsers(false);
+    setCampaigns(false);
+    setWallets(false);
+    setFunds(false);
+    setWarning(false);
+    setSkill(false);
+    setSetting(false);
+    setCategory(false);
+    setEarning(true);
+  };
+  const handleCategory = () => {
+    setOverviews(false);
+    setUsers(false);
+    setCampaigns(false);
+    setWallets(false);
+    setFunds(false);
+    setWarning(false);
+    setSkill(false);
+    setSetting(false);
+    setCategory(true);
+    setEarning(false);
   };
 
   return (
@@ -154,6 +197,17 @@ const Sidebar = () => {
               route={"/wallet"}
             />
           </a>
+          <a href="" className="removeUnderline" onClick={handleEarning}>
+            <SidebarItems
+              notification={true}
+              icon={earn}
+              label="Earnings"
+              className="sideItem"
+              number={4}
+              active={earning}
+              route={"/earnings"}
+            />
+          </a>
           <a href="" className="removeUnderline" onClick={handleFund}>
             <SidebarItems
               notification={true}
@@ -187,17 +241,29 @@ const Sidebar = () => {
               route={"/skills"}
             />
           </a>
+          <a href="" className="removeUnderline" onClick={handleCategory}>
+            <SidebarItems
+              notification={false}
+              icon={skills}
+              label="Categories"
+              className="sideItem"
+              number={9}
+              active={category}
+              route={"/categories"}
+            />
+          </a>
           <div className="dottedAlign">
             <img className="dottedImg " src={dotted} alt="" />
           </div>
 
           <div>
-            <a href="" className="removeUnderline">
+            <a href="" className="removeUnderline" onClick={handleSetting}>
               <SidebarItems
                 notification={false}
                 icon={settings}
                 label="Settings"
                 route={"/settings"}
+                active={setting}
               />
             </a>
           </div>

@@ -14,3 +14,15 @@
 .setting_heading_title {
   padding-top: 0.1vw;
 }
+.settingBox {
+  width: 40vw;
+  border-radius: 1vw;
+  height: 26vw;
+  background-color: var(--white-color);
+  position: absolute;
+  top: 35%;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}

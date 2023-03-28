@@ -1,7 +1,10 @@
 import axios from "axios";
-// const url = "https://stepdev.up.railway.app";
+// const url = `${base_url}";
 
 //
+
+const base_url = "https://stepev-dev.up.railway.app";
+
 export const date = (d) => {
   const date = new Date(d);
   const formattedDate = date.toLocaleDateString("en-GB", {
@@ -17,7 +20,7 @@ export const getImage = async () => {
   var config = {
     method: "get",
     maxBodyLength: Infinity,
-    url: "http://stepdev.up.railway.app/media/getImage/63834c335e170a039705fe8cae4f28ea.jpeg",
+    url: `${base_url}/media/getImage/63834c335e170a039705fe8cae4f28ea.jpeg`,
     headers: {},
   };
 
@@ -43,7 +46,7 @@ export const loginApi = async (email, password) => {
   var config = {
     method: "post",
     maxBodyLength: Infinity,
-    url: "https://stepdev.up.railway.app/auth/login",
+    url: `${base_url}/auth/login`,
     headers: {
       "Content-Type": "application/json",
     },
@@ -73,7 +76,7 @@ export const getUsers = async (page, limit) => {
   var config = {
     method: "post",
     maxBodyLength: Infinity,
-    url: "https://stepdev.up.railway.app/admin/getUsers",
+    url: `${base_url}/admin/getUsers`,
     headers: {
       Authorization:
         "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y2ODE4M2YwM2U0ODAwMWViZWYyODQiLCJyb2xlIjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY3NzMyMTU1MH0.zrGG4JKTI5pouAcH3ARFwrc93EXXwGD8Nn65ntkPN44",
@@ -103,7 +106,7 @@ export const getCampaigns = async (page, limit) => {
   var config = {
     method: "post",
     maxBodyLength: Infinity,
-    url: "https://stepdev.up.railway.app/admin/getStartups",
+    url: `${base_url}/admin/getStartups`,
     headers: {
       Authorization:
         "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y2ODE4M2YwM2U0ODAwMWViZWYyODQiLCJyb2xlIjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY3NzMyMTU1MH0.zrGG4JKTI5pouAcH3ARFwrc93EXXwGD8Nn65ntkPN44",
@@ -122,13 +125,43 @@ export const getCampaigns = async (page, limit) => {
   return response_data;
 };
 
+// Get single campaign
+export const getSingleCampaign = async (campaignId) => {
+  let res;
+  var data = JSON.stringify({
+    startupid: campaignId,
+  });
+
+  var config = {
+    method: "post",
+    maxBodyLength: Infinity,
+    url: `${base_url}/startup/getStarupbyId`,
+    headers: {
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2UyYTVlZjhkMDQ3YjAwMWUwNWI1Y2UiLCJyb2xlIjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY3NTk2NzM5MX0.xLaQxiEQ4TrPQMxWcCgQrY-gFiJNq_-AbA73GfkzlDo",
+      "Content-Type": "application/json",
+    },
+    data: data,
+  };
+
+  await axios(config)
+    .then(function (response) {
+      console.log(JSON.stringify(response.data));
+      res = response.data;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  return res;
+};
+
 // Get admin wallet details
 export const adminWalletDetails = async () => {
   var response_data;
   var config = {
     method: "get",
     maxBodyLength: Infinity,
-    url: "https://stepdev.up.railway.app/admin/wallet",
+    url: `${base_url}/admin/wallet`,
     headers: {
       Authorization:
         "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y2ODE4M2YwM2U0ODAwMWViZWYyODQiLCJyb2xlIjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY3NzMyMTU1MH0.zrGG4JKTI5pouAcH3ARFwrc93EXXwGD8Nn65ntkPN44",
@@ -156,7 +189,7 @@ export const freelancerProfile = async (Id) => {
   var config = {
     method: "post",
     maxBodyLength: Infinity,
-    url: "https://stepdev.up.railway.app/admin/freelancerProfile/data",
+    url: `${base_url}/admin/freelancerProfile/data`,
     headers: {
       Authorization:
         "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y2ODE4M2YwM2U0ODAwMWViZWYyODQiLCJyb2xlIjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY3NzMyMTU1MH0.zrGG4JKTI5pouAcH3ARFwrc93EXXwGD8Nn65ntkPN44",
@@ -186,7 +219,7 @@ export const freelancerCampaigns = async (Id) => {
   var config = {
     method: "post",
     maxBodyLength: Infinity,
-    url: "https://stepdev.up.railway.app/admin/freelancerProfile/campaigns",
+    url: `${base_url}/admin/freelancerProfile/campaigns`,
     headers: {
       Authorization:
         "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y2ODE4M2YwM2U0ODAwMWViZWYyODQiLCJyb2xlIjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY3NzMyMTU1MH0.zrGG4JKTI5pouAcH3ARFwrc93EXXwGD8Nn65ntkPN44",
@@ -216,7 +249,7 @@ export const freelancerWarning = async (Id) => {
   var config = {
     method: "post",
     maxBodyLength: Infinity,
-    url: "https://stepdev.up.railway.app/admin/freelancerProfile/warnings",
+    url: `${base_url}/admin/freelancerProfile/warnings`,
     headers: {
       Authorization:
         "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y2ODE4M2YwM2U0ODAwMWViZWYyODQiLCJyb2xlIjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY3NzMyMTU1MH0.zrGG4JKTI5pouAcH3ARFwrc93EXXwGD8Nn65ntkPN44",
@@ -246,7 +279,7 @@ export const freelancerEarning = async (Id) => {
   var config = {
     method: "post",
     maxBodyLength: Infinity,
-    url: "https://stepdev.up.railway.app/admin/freelancerProfile/earnings",
+    url: `${base_url}/admin/freelancerProfile/earnings`,
     headers: {
       Authorization:
         "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y2ODE4M2YwM2U0ODAwMWViZWYyODQiLCJyb2xlIjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY3NzMyMTU1MH0.zrGG4JKTI5pouAcH3ARFwrc93EXXwGD8Nn65ntkPN44",
@@ -273,7 +306,7 @@ export const viewSkills = async () => {
   var config = {
     method: "get",
     maxBodyLength: Infinity,
-    url: "https://stepdev.up.railway.app/admin/skills",
+    url: `${base_url}/admin/skills`,
     headers: {
       Authorization:
         "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y2ODE4M2YwM2U0ODAwMWViZWYyODQiLCJyb2xlIjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY3NzMyMTU1MH0.zrGG4JKTI5pouAcH3ARFwrc93EXXwGD8Nn65ntkPN44",
@@ -298,7 +331,7 @@ export const addSkill = async (skillTitle) => {
   var config = {
     method: "post",
     maxBodyLength: Infinity,
-    url: "https://stepdev.up.railway.app/admin/skills",
+    url: `${base_url}/admin/skills`,
     headers: {
       Authorization:
         "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y2ODE4M2YwM2U0ODAwMWViZWYyODQiLCJyb2xlIjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY3NzMyMTU1MH0.zrGG4JKTI5pouAcH3ARFwrc93EXXwGD8Nn65ntkPN44",
@@ -324,7 +357,7 @@ export const updateSkill = async (skillTitle, id) => {
   var config = {
     method: "put",
     maxBodyLength: Infinity,
-    url: "https://stepdev.up.railway.app/admin/skills",
+    url: `${base_url}/admin/skills`,
     headers: {
       Authorization:
         "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y2ODE4M2YwM2U0ODAwMWViZWYyODQiLCJyb2xlIjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY3NzMyMTU1MH0.zrGG4JKTI5pouAcH3ARFwrc93EXXwGD8Nn65ntkPN44",
@@ -351,7 +384,7 @@ export const deleteSkill = async (skillTitle, id) => {
   var config = {
     method: "delete",
     maxBodyLength: Infinity,
-    url: "https://stepdev.up.railway.app/admin/skills",
+    url: `${base_url}/admin/skills`,
     headers: {
       Authorization:
         "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Y2ODE4M2YwM2U0ODAwMWViZWYyODQiLCJyb2xlIjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY3NzMyMTU1MH0.zrGG4JKTI5pouAcH3ARFwrc93EXXwGD8Nn65ntkPN44",
@@ -379,7 +412,7 @@ export const getAllWarnings = async (page, limit) => {
   var config = {
     method: "post",
     maxBodyLength: Infinity,
-    url: "https://stepdev.up.railway.app/warnings/all",
+    url: `${base_url}/warnings/all`,
     headers: {
       Authorization:
         "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2ZiNTNmMWUxYWFmZjAwMWUwMDUwM2IiLCJyb2xlIjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY3Nzc1MDY3OX0.XkY68et_RmonA85sBwNpn5T14B9zwrXGTIwDWg-vUWU",
@@ -400,13 +433,14 @@ export const getAllWarnings = async (page, limit) => {
 };
 
 export const deleteUser = async (id) => {
+  let res;
   var data = JSON.stringify({
     userId: id,
   });
   var config = {
     method: "delete",
     maxBodyLength: Infinity,
-    url: "https://stepdev.up.railway.app/admin/user/delete",
+    url: `${base_url}/admin/user/delete`,
     headers: {
       Authorization:
         "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2ZiNTNmMWUxYWFmZjAwMWUwMDUwM2IiLCJyb2xlIjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY3Nzg3MTA4M30.W0TZCLDQID6YW5drjOja60iEzQ3KRfJy2hEbD4HqMI0",
@@ -418,10 +452,13 @@ export const deleteUser = async (id) => {
   await axios(config)
     .then(function (response) {
       console.log(JSON.stringify(response.data));
+      res = response.data;
     })
     .catch(function (error) {
-      console.log(error);
+      console.log(error.response.data);
+      res = error.response.data;
     });
+  return res;
 };
 
 export const getAllWithdrawlRequest = async (page, limit) => {
@@ -434,7 +471,7 @@ export const getAllWithdrawlRequest = async (page, limit) => {
   var config = {
     method: "post",
     maxBodyLength: Infinity,
-    url: "https://stepdev.up.railway.app/admin/withdrawlRequests",
+    url: `${base_url}/admin/withdrawlRequests`,
     headers: {
       Authorization:
         "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2UyYTVlZjhkMDQ3YjAwMWUwNWI1Y2UiLCJyb2xlIjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY3NTk2NzM5MX0.xLaQxiEQ4TrPQMxWcCgQrY-gFiJNq_-AbA73GfkzlDo",
@@ -462,7 +499,7 @@ export const pausePayment = async (id) => {
   var config = {
     method: "post",
     maxBodyLength: Infinity,
-    url: "https://stepdev.up.railway.app/admin/withdraw/pause",
+    url: `${base_url}/admin/withdraw/pause`,
     headers: {
       Authorization:
         "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2ZiNTNmMWUxYWFmZjAwMWUwMDUwM2IiLCJyb2xlIjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY3Nzg2NzgwOH0.HPyvOdzwnVakhodKBbmwT_Pdg1gqgOgc59G-WeZ-Wjw",
@@ -477,5 +514,196 @@ export const pausePayment = async (id) => {
     })
     .catch(function (error) {
       console.log(error);
+    });
+};
+
+export const appEarnings = async () => {
+  let res;
+  var data = JSON.stringify({
+    page: 1,
+    limit: 10,
+  });
+
+  var config = {
+    method: "post",
+    maxBodyLength: Infinity,
+    url: `${base_url}/admin/appEarnings`,
+    headers: {
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2UyYTVlZjhkMDQ3YjAwMWUwNWI1Y2UiLCJyb2xlIjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY3NTk2NzM5MX0.xLaQxiEQ4TrPQMxWcCgQrY-gFiJNq_-AbA73GfkzlDo",
+      "Content-Type": "application/json",
+    },
+    data: data,
+  };
+
+  await axios(config)
+    .then(function (response) {
+      console.log(JSON.stringify(response.data));
+      res = response.data;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  return res;
+};
+
+export const getCategories = async () => {
+  var res;
+  var config = {
+    method: "get",
+    maxBodyLength: Infinity,
+    url: `${base_url}/admin/getAllCategories`,
+    headers: {
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2UyYTVlZjhkMDQ3YjAwMWUwNWI1Y2UiLCJyb2xlIjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY3NTk2NzM5MX0.xLaQxiEQ4TrPQMxWcCgQrY-gFiJNq_-AbA73GfkzlDo",
+    },
+  };
+
+  await axios(config)
+    .then(function (response) {
+      console.log(JSON.stringify(response.data));
+      res = response.data;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  return res;
+};
+
+export const uploadImage = async (file) => {
+  var res;
+  var FormData = require("form-data");
+  var data = new FormData();
+  data.append("file", file);
+
+  var config = {
+    method: "post",
+    maxBodyLength: Infinity,
+    url: `${base_url}/media/uploadfile`,
+    headers: {
+      // ...data.getHeaders(),
+    },
+    data: data,
+  };
+
+  await axios(config)
+    .then(function (response) {
+      console.log(JSON.stringify(response.data));
+      res = response.data;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  return res;
+};
+
+export const addCategory = async (title, img) => {
+  var data = JSON.stringify({
+    title: title,
+    avatar: img,
+  });
+
+  var config = {
+    method: "post",
+    maxBodyLength: Infinity,
+    url: `${base_url}/admin/addCategory`,
+    headers: {
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2UyYTVlZjhkMDQ3YjAwMWUwNWI1Y2UiLCJyb2xlIjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY3NTk2NzM5MX0.xLaQxiEQ4TrPQMxWcCgQrY-gFiJNq_-AbA73GfkzlDo",
+      "Content-Type": "application/json",
+    },
+    data: data,
+  };
+
+  await axios(config)
+    .then(function (response) {
+      console.log(JSON.stringify(response.data));
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};
+
+export const deleteCategory = async (id) => {
+  var data = JSON.stringify({
+    categoryId: id,
+  });
+
+  var config = {
+    method: "delete",
+    maxBodyLength: Infinity,
+    url: `${base_url}/admin/deleteCategory`,
+    headers: {
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2ZiNTNmMWUxYWFmZjAwMWUwMDUwM2IiLCJyb2xlIjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY3Nzg1NTAyMn0.3NOKw5HW0AmLxtMXfBES-c2nONzmcpKf3X4Sf0OUHuM",
+      "Content-Type": "application/json",
+    },
+    data: data,
+  };
+
+  await axios(config)
+    .then(function (response) {
+      console.log(JSON.stringify(response.data));
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};
+
+export const updateCategory = async (categoryId, title, avatar) => {
+  var data = JSON.stringify({
+    categoryId,
+    title,
+    avatar,
+  });
+
+  var config = {
+    method: "put",
+    maxBodyLength: Infinity,
+    url: `${base_url}/admin/updateCategory`,
+    headers: {
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2ZiNTNmMWUxYWFmZjAwMWUwMDUwM2IiLCJyb2xlIjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY3Nzg1NTAyMn0.3NOKw5HW0AmLxtMXfBES-c2nONzmcpKf3X4Sf0OUHuM",
+      "Content-Type": "application/json",
+    },
+    data: data,
+  };
+
+  await axios(config)
+    .then(function (response) {
+      console.log(JSON.stringify(response.data));
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};
+
+export const UnSuspendUser = async (userId, status) => {
+  let res;
+  var data = JSON.stringify({
+    userId,
+    status,
+  });
+
+  var config = {
+    method: "post",
+    maxBodyLength: Infinity,
+    url: `${base_url}/admin/suspend/user`,
+    headers: {
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2ZiNTNmMWUxYWFmZjAwMWUwMDUwM2IiLCJyb2xlIjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY3Nzg1NTAyMn0.3NOKw5HW0AmLxtMXfBES-c2nONzmcpKf3X4Sf0OUHuM",
+      "Content-Type": "application/json",
+    },
+    data: data,
+  };
+
+  await axios(config)
+    .then(function (response) {
+      console.log(JSON.stringify(response.data));
+      res = response.data;
+    })
+    .catch(function (error) {
+      console.log(error.response.data);
+      res = error.response.data;
     });
 };

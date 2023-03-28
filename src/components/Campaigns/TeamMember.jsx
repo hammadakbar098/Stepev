@@ -3,7 +3,7 @@ import "./TeamMember.css";
 import dot from "./../../assets/Images/Campaign/dot.svg";
 import chat from "./../../assets/Images/Campaign/chat.svg";
 import lnkdn from "./../../assets/Images/Campaign/Linkedin.svg";
-const TeamMember = ({ name, position }) => {
+const TeamMember = ({ name, position, img }) => {
   return (
     <>
       <div className="teamMember">
@@ -14,7 +14,11 @@ const TeamMember = ({ name, position }) => {
           align="right"
         />
         <div className="alignTeamMember">
-          <div className="teamMemberImg"> </div>
+          <div className="teamMemberImg">
+            {img ? (
+              <img crossOrigin="anonymous" src={img} alt="userImage" />
+            ) : null}
+          </div>
           <p className="memberName">{name}</p>
           <p className="memberPosition">{position}</p>
           <div className="memberSocialProfile">

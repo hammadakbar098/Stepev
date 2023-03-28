@@ -14,6 +14,9 @@ import CampaignInfo from "./../Campaigns/CampaignInfo";
 import Login from "../Login/Login";
 import DashboardStats from "./../Dashboard/DashboardStats";
 import Dashboard from "../Dashboard/Dashboard";
+import Earnings from "../Earnings/Earnings";
+import Category from "../Categories/Category";
+
 const Routing = () => {
   return (
     <>
@@ -32,6 +35,8 @@ const Routing = () => {
         <Route path="/skills" element={<Skill />} />
         <Route path="/settings" element={<Setting />} />
         <Route path="/notifications" element={<AdminNotification />} />
+        <Route path="/earnings" element={<Earnings />} />
+        <Route path="/categories" element={<Category />} />
       </Routes>
     </>
   );

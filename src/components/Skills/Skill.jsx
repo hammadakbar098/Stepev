@@ -10,6 +10,7 @@ import {
   deleteSkill,
   addSkill,
   updateSkill,
+  date,
 } from "../../api/axios";
 
 const Skill = () => {
@@ -96,7 +97,7 @@ const Skill = () => {
                 <td align="left" className="skillName">
                   <p>{item?.title}</p>
                 </td>
-                <td className="skillDate">12,oct,2022</td>
+                <td className="skillDate">{date(item?.createdAt)}</td>
                 <td className="totalFreelancers">{item?.count}</td>
                 <td className="skillsBtns">
                   <div

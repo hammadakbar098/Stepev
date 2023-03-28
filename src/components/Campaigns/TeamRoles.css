@@ -1,9 +1,15 @@
 .team_role_data {
   width: 22.78vw;
   margin-right: 1.95vw;
+  display: flex;
+  flex-wrap: wrap;
+}
+hr {
+  border: 0;
 }
 .teamRolesTitle {
-  width: 22.39vw;
+  /* width: 22.39vw; */
+  width: calc(100% * (1 / 4) - 10px - 1px);
   height: 3.77vw;
   background: var(--white-color);
   box-shadow: 0px 0.78vw 0.911vw rgba(0, 0, 0, 0.04);
@@ -12,6 +18,7 @@
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
+  flex-grow: 1;
 }
 .alignTeamRoles {
   display: flex;

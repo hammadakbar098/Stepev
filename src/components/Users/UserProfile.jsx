@@ -21,26 +21,31 @@ import earn from "./../../assets/Images/User Profile/earning.svg";
 import warnblack from "./../../assets/Images/User Profile/warnblack.svg";
 import suspendwhite from "./../../assets/Images/User Profile/suspendwhite.png";
 import UserWarning from "./UserWarning";
-import { freelancerProfile } from "../../api/axios";
+import { freelancerProfile, UnSuspendUser, deleteUser } from "../../api/axios";
 import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const UserProfile = () => {
+  const navigate = useNavigate();
   const stateData = useLocation();
   const [data, setData] = useState();
   const [earning, setEarning] = useState(false);
   const [warning, setWarning] = useState(false);
   const [campaigns, setCampaigns] = useState(true);
-  const [suspend, setSuspend] = useState(false);
   const [freelancerId, setFreelancerId] = useState(
     stateData.state.freelancerId
   );
+  const [error, setError] = useState(false);
+  const [errorMsg, setErrorMsg] = useState(null);
+  const [suspendError, setSuspendError] = useState(false);
+  const [suspendErrorMsg, setSuspendErrorMsg] = useState(null);
 
+  const apiCall = async () => {
+    var response_data = await freelancerProfile(freelancerId);
+    setData(response_data.data[0]);
+    console.log(response_data.data);
+  };
   useEffect(() => {
-    const apiCall = async () => {
-      var response_data = await freelancerProfile(freelancerId);
-      setData(response_data.data[0]);
-      console.log(response_data.data);
-    };
     // console.log(stateData.state.freelancerId);
     apiCall();
   }, []);
@@ -59,9 +64,37 @@ const UserProfile = () => {
     setEarning(false);
     setWarning(true);
   };
-  const handleSuspend = () => {
-    setSuspend(!suspend);
+  const handleSuspend = async (id, status, e) => {
+    e.preventDefault();
+
+    if (status === "Suspend") {
+      let res = await UnSuspendUser(id, status);
+      if (res?.status === "ERROR") {
+        setSuspendError(true);
+        setSuspendErrorMsg(res?.error?.name);
+      }
+      apiCall();
+    } else {
+      let res = await UnSuspendUser(id, status);
+      if (res?.status === "ERROR") {
+        setSuspendError(true);
+        setSuspendErrorMsg(res?.error?.name);
+      }
+      apiCall();
+    }
   };
+
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    let res = await deleteUser(freelancerId);
+    if (res?.status === "OK") {
+      navigate("/users");
+    } else {
+      setError(true);
+      setErrorMsg(res?.error?.name);
+    }
+  };
+
   const date = (d) => {
     const date = new Date(d);
     const formattedDate = date.toLocaleDateString("en-GB", {
@@ -73,11 +106,16 @@ const UserProfile = () => {
   };
   return (
     <>
+      {error ? <p className="error">Cannot delete user as {errorMsg}</p> : null}
+      {suspendError ? (
+        <p className="error">Cannot suspend user as {errorMsg}</p>
+      ) : null}
+
       <Heading title="Freelancer Profile" />
       <div className="userProfileContainer">
         <div className="userProfilePicture">
           <img
-            Crossorigin="anonymous"
+            crossOrigin="anonymous"
             src={`https://stepdev.up.railway.app/media/getImage/${data?.avatar}`}
             alt="profile"
           />
@@ -93,10 +131,12 @@ const UserProfile = () => {
               ) : null}
             </div>
             <div className="userActionBtns">
-              {suspend ? (
+              {data?.status === "Suspended" ? (
                 <div
                   className="userActionBtn unsuspend"
-                  onClick={handleSuspend}
+                  onClick={(e) => {
+                    handleSuspend(freelancerId, "Unsuspend", e);
+                  }}
                 >
                   <img
                     className="disableIcon"
@@ -106,12 +146,22 @@ const UserProfile = () => {
                   <p className="unsuspend_p">Unsuspend</p>
                 </div>
               ) : (
-                <div className="userActionBtn" onClick={handleSuspend}>
+                <div
+                  className="userActionBtn"
+                  onClick={(e) => {
+                    handleSuspend(freelancerId, "Suspend", e);
+                  }}
+                >
                   <img className="disableIcon" src={disable} alt="Disable" />
                   <p>Suspend</p>
                 </div>
               )}
-              <div className="userActionBtn">
+              <div
+                className="userActionBtn"
+                onClick={(e) => {
+                  handleDelete(e);
+                }}
+              >
                 <img className="binIcon" src={bin} alt="Delete" /> <p>Delete</p>
               </div>
             </div>

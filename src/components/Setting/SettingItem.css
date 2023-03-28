@@ -14,3 +14,16 @@
   width: 1.56vw;
   margin-right: 4.2vw;
 }
+
+.alignInputBox {
+  margin-bottom: 1vw;
+}
+.changeBtns {
+  margin-top: 1.3vw;
+}
+
+.settingWarning {
+  font-size: 0.8vw;
+  text-align: center;
+  color: var(--red-color);
+}

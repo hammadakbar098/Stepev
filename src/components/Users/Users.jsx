@@ -21,36 +21,45 @@ const Users = () => {
   const [totalPage, setTotalPage] = useState();
   const [metaData, setMetaData] = useState();
   const [render, setRender] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
   const navigate = useNavigate();
 
   const getData = async (count) => {
     var response_data = await getUsers(count, 10);
-    console.log(response_data.metaData[0]);
+    console.log(response_data);
     setData(response_data);
     setMetaData(response_data.metaData[0]);
     setTotalPage(Math.ceil(response_data.metaData[0].total / 10));
   };
-  const handleNavigation = (freelancerId, e) => {
+  const handleNavigation = (freelancerId, e, status) => {
     e.preventDefault();
-    navigate("/users/user-profile", { state: { freelancerId: freelancerId } });
+    navigate("/users/user-profile", {
+      state: { freelancerId: freelancerId, status: status },
+    });
   };
   const handleFilter = (e) => {
     e.preventDefault();
     setFilter(!filter);
   };
   const handleNextPage = () => {
-    let count = data.metaData[0].page + 1;
+    let count = currentPage + 1;
+    setCurrentPage(count);
     getData(count);
   };
   const handlePreviousPage = () => {
-    let count = data.metaData[0].page - 1;
+    let count = currentPage - 1;
+    setCurrentPage(count);
     getData(count);
   };
 
+  const handleInterval = () => {
+    setRender(!render);
+  };
+
   useEffect(() => {
-    getData(1);
-    setRender(false);
+    getData(currentPage);
   }, [render]);
+
   return (
     <>
       <div>
@@ -108,7 +117,7 @@ const Users = () => {
                 <td className="firstTd">
                   {/* <div className="user_image"></div> */}
                   <img
-                    Crossorigin="anonymous"
+                    crossOrigin="anonymous"
                     className="user_image"
                     src={`https://stepdev.up.railway.app/media/getImage/${user.avatar}`}
                     alt="User image"
@@ -128,19 +137,14 @@ const Users = () => {
                 <td align="center">
                   <div
                     onClick={(e) => {
-                      handleNavigation(user?._id, e);
+                      handleNavigation(user?._id, e, user?.status);
                     }}
                   >
                     <FormButton title="View profile" />
                   </div>
                 </td>
-                <td
-                  align="center"
-                  onClick={() => {
-                    setRender(true);
-                  }}
-                >
-                  <PopupMenu ban={true} userId={user._id} />
+                <td align="center" onClick={handleInterval}>
+                  <PopupMenu ban={user?.status} userId={user._id} />
                 </td>
               </tr>
             ))}

@@ -16,8 +16,10 @@ const Campaigns = () => {
   const [metaData, setMetaData] = useState();
 
   const navigate = useNavigate();
-  const handleNavigation = () => {
-    navigate("/campaigns/campaign");
+
+  const handleNavigation = (campaignId, e) => {
+    e.preventDefault();
+    navigate("/campaigns/campaign", { state: { campaignId: campaignId } });
   };
 
   const callApi = async (count) => {
@@ -109,7 +111,9 @@ const Campaigns = () => {
                   <div className="campaign_action_btns">
                     <div
                       className="campaign_action_btn1"
-                      onClick={handleNavigation}
+                      onClick={(e) => {
+                        handleNavigation(item?._id, e);
+                      }}
                     >
                       <p>View Campaign</p>
                     </div>
