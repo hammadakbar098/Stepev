@@ -118,7 +118,7 @@ const Campaigns = () => {
                       <p>View Campaign</p>
                     </div>
                     <div className="campaign_action_btn2">
-                      <p>Approved</p>
+                      <p>{item.status}</p>
                     </div>
                     <img src={dot} alt="More options" />
                   </div>

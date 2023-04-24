@@ -8,13 +8,21 @@ import TeamMember from "./TeamMember";
 import TeamRoles from "./TeamRoles";
 import pdf from "./../../assets/Images/Campaign/pdf.svg";
 import { getSingleCampaign } from "../../api/axios";
+import {changeStartupStatus} from "../../api/axios"
 import { useLocation } from "react-router-dom";
+import axios from "axios";
+const base_url = "https://stepev-dev.up.railway.app";
 
 const CampaignInfo = () => {
   const stateData = useLocation();
 
   const [data, setData] = useState();
   const [campaignId, setCampaignId] = useState(stateData.state.campaignId);
+
+  const changeStartup = async(campaignId,status) => {
+    await changeStartupStatus(campaignId,status)
+    // console.log(response)
+  }
 
   useEffect(() => {
     const getData = async () => {
@@ -23,6 +31,8 @@ const CampaignInfo = () => {
     };
     getData();
   }, []);
+  
+
   return (
     <>
       <Heading title="Campaigns" />
@@ -108,8 +118,8 @@ const CampaignInfo = () => {
         <p>Download Pitchdeck.pdf</p>
       </div>
       <div className="campaignInfoBtns">
-        <div className="infoBtn1">Decline</div>
-        <div className="infoBtn2">Approve</div>
+        <div onClick={() => changeStartup(campaignId,"Rejected")} className="infoBtn1">Decline</div>
+        <div onClick={() => changeStartup(campaignId,"Approved")} className="infoBtn2">Approve</div>
       </div>
     </>
   );

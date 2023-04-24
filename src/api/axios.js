@@ -155,6 +155,37 @@ export const getSingleCampaign = async (campaignId) => {
   return res;
 };
 
+//Change startupstatus
+export const changeStartupStatus = async (campaignId,status) => {
+  let res;
+  var data = JSON.stringify({
+    startupid: campaignId,
+    status: status
+  });
+  console.log(data)
+  var config = {
+    method: "post",
+    maxBodyLength: Infinity,
+    url: `${base_url}/admin/changeStartupStatus`,
+    headers: {
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2UyYTVlZjhkMDQ3YjAwMWUwNWI1Y2UiLCJyb2xlIjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY3NTk2NzM5MX0.xLaQxiEQ4TrPQMxWcCgQrY-gFiJNq_-AbA73GfkzlDo",
+      "Content-Type": "application/json",
+    },
+    data: data,
+  };
+
+  await axios(config)
+    .then(function (response) {
+      console.log(JSON.stringify(response.data));
+      res = response.data;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  return res;
+};
+
 // Get admin wallet details
 export const adminWalletDetails = async () => {
   var response_data;
