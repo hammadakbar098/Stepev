@@ -7,7 +7,8 @@ import play from "./../../assets/Images/Campaign/play.png";
 import TeamMember from "./TeamMember";
 import TeamRoles from "./TeamRoles";
 import pdf from "./../../assets/Images/Campaign/pdf.svg";
-import { getSingleCampaign } from "../../api/axios";
+import { useNavigate } from "react-router-dom";
+import { getSingleCampaign, getstartupstatus } from "../../api/axios";
 import {changeStartupStatus} from "../../api/axios"
 import { useLocation } from "react-router-dom";
 import axios from "axios";
@@ -18,13 +19,25 @@ const CampaignInfo = () => {
 
   const [data, setData] = useState();
   const [campaignId, setCampaignId] = useState(stateData.state.campaignId);
+  const [campaignstatus, setCampaignStatus] = useState('')
+
+  const navigate = useNavigate();
 
   const changeStartup = async(campaignId,status) => {
     await changeStartupStatus(campaignId,status)
     // console.log(response)
   }
+  const Getstartupstatus = async(campaignId) => {
+    let response = await getstartupstatus(campaignId)
+    setCampaignStatus(response.data)
+  }
+
+  const handleNavigation = () => {
+    navigate("/campaigns");
+  };
 
   useEffect(() => {
+    Getstartupstatus(campaignId)
     const getData = async () => {
       let response = await getSingleCampaign(campaignId);
       setData(response);
@@ -117,10 +130,22 @@ const CampaignInfo = () => {
         <img src={pdf} alt="" />
         <p>Download Pitchdeck.pdf</p>
       </div>
-      <div className="campaignInfoBtns">
-        <div onClick={() => changeStartup(campaignId,"Rejected")} className="infoBtn1">Decline</div>
-        <div onClick={() => changeStartup(campaignId,"Approved")} className="infoBtn2">Approve</div>
+
+      {campaignstatus === 'Unapproved' 
+      ? (
+        <div className="campaignInfoBtns">
+        <div onClick={() => {
+          changeStartup(campaignId,"Rejected")
+          handleNavigation()
+          }} className="infoBtn1">Decline</div>
+        <div onClick={() => {
+          changeStartup(campaignId,"Approved")
+          handleNavigation()
+          }} className="infoBtn2">Approve</div>
       </div>
+
+      ) :
+      null  }
     </>
   );
 };

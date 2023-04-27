@@ -41,7 +41,7 @@ const Campaigns = () => {
 
   useEffect(() => {
     callApi(1);
-  }, []);
+  }, [data]);
   return (
     <>
       <Heading title="Campaigns" />
