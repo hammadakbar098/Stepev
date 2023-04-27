@@ -34,6 +34,7 @@
   height: 3.64vw;
   background-color: #eeeeee;
   border-radius: 0.32vw;
+  margin-bottom: 2%;
 }
 .proposalPdf {
   display: flex;
@@ -67,11 +68,14 @@
   font-weight: 500;
   font-size: 0.91vw;
   color: var(--white-color);
+  margin-bottom: 3%;
 }
 .infoBtn1 {
   background-color: var(--redLight-color);
   margin-right: 0.78vw;
+  cursor: pointer;
 }
 .infoBtn2 {
   background-color: var(--purple-color);
+  cursor: pointer;
 }
